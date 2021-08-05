@@ -15,12 +15,13 @@ interface State {
 	chooseScreen: boolean;
 }
 class SelectTeamGui extends Roact.Component<Props, State> {
+	//technically it's a binding and the update function but same thing
 	centerLineBinding = Roact.createBinding(0);
 	leftPageBinding = Roact.createBinding(0);
 	rightPageBinding = Roact.createBinding(0);
+	centerLocation = Roact.createBinding(0.5);
 	leftCameraRef = Roact.createRef<Camera>();
 	rightCameraRef = Roact.createRef<Camera>();
-	centerLocation = Roact.createBinding(0.5);
 	didMount() {
 		this.leftCameraRef.getValue()!.CFrame = CFrame.Angles(0, math.rad(-20), 0).mul(new CFrame(0, 0, 5));
 		//this.leftCameraRef.getValue()!.CFrame = new CFrame(new Vector3(0, 0, -10), new Vector3(0, 0, 0));
@@ -61,6 +62,23 @@ class SelectTeamGui extends Roact.Component<Props, State> {
 								CameraRef={this.leftCameraRef}
 							/>
 						</textbutton>
+						<textlabel
+							BackgroundTransparency={1}
+							TextColor3={new Color3(0, 0, 0)}
+							Text="Human"
+							TextSize={45}
+							Position={new UDim2(0.5, 0, 0.8, 0)}
+							AnchorPoint={new Vector2(0.5, 0.5)}
+							Size={new UDim2(0.4, 0, 0, 60)}
+							TextTransparency={this.centerLocation[0].map((val) => {
+								// 0.5 -> 0.6
+								// 0 -> 0.1
+								// 0 -> 1
+								// 1 -> 0
+
+								return 1 - (math.clamp(val, 0.5, 0.6) - 0.5) * 10;
+							})}
+						/>
 					</frame>
 					<frame
 						Key="ScreenRight"
@@ -96,6 +114,21 @@ class SelectTeamGui extends Roact.Component<Props, State> {
 								CameraRef={this.rightCameraRef}
 							/>
 						</textbutton>
+						<textlabel
+							BackgroundTransparency={1}
+							TextColor3={new Color3(0, 0, 0)}
+							Text="Zombie"
+							TextSize={45}
+							Position={new UDim2(0.5, 0, 0.8, 0)}
+							AnchorPoint={new Vector2(0.5, 0.5)}
+							Size={new UDim2(0.4, 0, 0, 60)}
+							TextTransparency={this.centerLocation[0].map((val) => {
+								// 0.5 -> 0.4
+								// 0.1 -> 0
+								// 1 -> 0
+								return (math.clamp(val, 0.4, 0.5) - 0.4) * 10;
+							})}
+						/>
 					</frame>
 					<frame
 						Key="CenterLine"

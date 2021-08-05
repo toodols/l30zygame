@@ -1,0 +1,38 @@
+{
+  "name": "l30zygame",
+  "version": "1.0.0",
+  "description": "hola me llamos juan",
+  "main": "index.js",
+  "scripts": {
+    "build": "rbxtsc",
+    "watch": "rbxtsc -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/toodols/l30zygame.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/toodols/l30zygame/issues"
+  },
+  "homepage": "https://github.com/toodols/l30zygame#readme",
+  "devDependencies": {
+    "@rbxts/compiler-types": "^1.2.3-types.0",
+    "@rbxts/types": "^1.0.511",
+    "@typescript-eslint/eslint-plugin": "^4.29.0",
+    "@typescript-eslint/parser": "^4.29.0",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-roblox-ts": "0.0.30",
+    "prettier": "^2.3.2",
+    "typescript": "^4.3.5"
+  },
+  "dependencies": {
+    "@rbxts/roact": "^1.4.0-ts.1",
+    "@rbxts/services": "^1.1.5",
+    "rbxts-transformer-services": "^1.0.0"
+  }
+}

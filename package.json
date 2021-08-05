@@ -32,6 +32,7 @@
   },
   "dependencies": {
     "@rbxts/roact": "^1.4.0-ts.1",
+    "@rbxts/rodux": "^3.0.0-ts.3",
     "@rbxts/services": "^1.1.5",
     "rbxts-transformer-services": "^1.0.0"
   }

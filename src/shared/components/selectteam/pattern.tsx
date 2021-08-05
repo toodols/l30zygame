@@ -6,7 +6,6 @@ interface Props {
 	TileSize?: UDim2;
 	LoopTime?: number;
 	Direction?: UDim2;
-	BackgroundColor3: Color3;
 }
 
 class Pattern extends Roact.Component<Props> {
@@ -32,10 +31,9 @@ class Pattern extends Roact.Component<Props> {
 			>
 				<imagelabel
 					Key="Pattern"
-					BackgroundColor3={this.props.BackgroundColor3}
-					BorderSizePixel={0}
+					BackgroundTransparency={1}
 					Ref={this.ref}
-					ImageTransparency={0.3}
+					ImageTransparency={0.9}
 					Image={this.props.Image || "rbxassetid://121480522"}
 					ScaleType={Enum.ScaleType.Tile}
 					TileSize={this.props.TileSize || new UDim2(0, 96, 0, 96)}

@@ -1,24 +1,33 @@
+import Roact from "@rbxts/roact";
 import { RunService, TweenService } from "@rbxts/services";
 
-function Animate(
-	update: (newValue: number) => void,
+type NumericBinding = LuaTuple<[Roact.Binding<number>, (newValue: number) => void]>;
+
+const Animated: Map<NumericBinding, RBXScriptConnection> = new Map();
+
+function LerpNumber(start: number, endValue: number, alpha: number) {
+	return start + (endValue - start) * alpha;
+}
+
+function AnimateBinding(
+	binding: NumericBinding,
+	to = 1,
 	time = 0.5,
 	easingStyle: CastsToEnum<Enum.EasingStyle> = Enum.EasingStyle.Quad,
 	easingDirection: CastsToEnum<Enum.EasingDirection> = Enum.EasingDirection.Out,
-
-	finished = () => {},
 ) {
+	Animated.get(binding)?.Disconnect();
 	const start = tick();
+	const initial = binding[0].getValue();
 	const connection = RunService.RenderStepped.Connect(() => {
 		const alpha = (tick() - start) / time;
-		update(TweenService.GetValue(alpha, easingStyle, easingDirection));
+
+		binding[1](LerpNumber(initial, to, TweenService.GetValue(alpha, easingStyle, easingDirection)));
 		if (alpha > 1) {
 			connection.Disconnect();
-			if (finished) finished();
 		}
 	});
-
-	return;
+	Animated.set(binding, connection);
 }
 
-export { Animate };
+export { AnimateBinding };

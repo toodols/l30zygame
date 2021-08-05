@@ -3,9 +3,6 @@ import Roact, { createRef } from "@rbxts/roact";
 interface Props {
 	Model: Model;
 	CameraRef?: Roact.Ref<Camera>;
-	Size?: UDim2;
-	Position?: UDim2;
-	AnchorPoint?: Vector2;
 }
 class Viewport extends Roact.Component<Props> {
 	ref = createRef<ViewportFrame>();
@@ -33,14 +30,7 @@ class Viewport extends Roact.Component<Props> {
 	}
 	render() {
 		return (
-			<viewportframe
-				Key="Viewport"
-				BackgroundTransparency={1}
-				Ref={this.ref}
-				Size={this.props.Size}
-				Position={this.props.Position}
-				AnchorPoint={this.props.AnchorPoint}
-			>
+			<viewportframe Key="Viewport" BackgroundTransparency={1} Ref={this.ref} Size={new UDim2(1, 0, 1, 0)}>
 				<camera Ref={this.props.CameraRef} />
 			</viewportframe>
 		);

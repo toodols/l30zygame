@@ -13,10 +13,7 @@
 		"ReplicatedStorage": {
 			"$className": "ReplicatedStorage",
 			"Remotes": {
-				"$className": "Folder",
-				"a": {
-					"$className": "Folder"
-				}
+				"$className": "Folder"
 			},
 			"Models": {
 				"$className": "Folder"

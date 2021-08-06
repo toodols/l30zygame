@@ -1,10 +1,11 @@
 import Roact from "@rbxts/roact";
 import Rodux, { Action } from "@rbxts/rodux";
-import { ReplicatedStorage } from "@rbxts/services";
+import { ReplicatedStorage, SoundService } from "@rbxts/services";
 
 import { AnimateBinding } from "shared/Modules/util";
 import { DisplayOrder } from "shared/types/DisplayOrders";
 import { ReplicatedStorageTree } from "shared/types/ReplicatedStorageTree";
+import { TeamsTypes } from "shared/types/Teams";
 import { TopbarOffset } from "../topbaroffset";
 import { Pattern } from "./pattern";
 import { Viewport } from "./viewport";
@@ -20,12 +21,27 @@ class SelectTeamGui extends Roact.Component<Props, State> {
 	leftPageBinding = Roact.createBinding(0);
 	rightPageBinding = Roact.createBinding(0);
 	centerLocation = Roact.createBinding(0.5);
+	playButtonLocation = Roact.createBinding(0.7);
 	leftCameraRef = Roact.createRef<Camera>();
 	rightCameraRef = Roact.createRef<Camera>();
+	selected = false; //prevents
+	hoverSound: Sound;
+	pressSound: Sound;
+	release: Sound;
 	didMount() {
 		this.leftCameraRef.getValue()!.CFrame = CFrame.Angles(0, math.rad(-20), 0).mul(new CFrame(0, 0, 5));
 		//this.leftCameraRef.getValue()!.CFrame = new CFrame(new Vector3(0, 0, -10), new Vector3(0, 0, 0));
 		this.rightCameraRef.getValue()!.CFrame = CFrame.Angles(0, math.rad(-20), 0).mul(new CFrame(0, 0, 5));
+	}
+
+	onSelected(side: TeamsTypes) {
+		this.selected = true;
+		print(`Selected ${side}`);
+		AnimateBinding(this.centerLocation, 0.5, 0.5);
+		AnimateBinding(this.centerLineBinding, 0, 1);
+		wait(0.5);
+		AnimateBinding(this.rightPageBinding, 0, 0.7);
+		AnimateBinding(this.leftPageBinding, 0, 0.7);
 	}
 
 	render() {
@@ -50,10 +66,15 @@ class SelectTeamGui extends Roact.Component<Props, State> {
 							Position={new UDim2(0.5, 0, 0.4, 0)}
 							Event={{
 								MouseEnter: () => {
-									AnimateBinding(this.centerLocation, 0.6, 0.3);
+									this.hoverSound.Play();
+									if (!this.selected) AnimateBinding(this.centerLocation, 0.6, 0.3);
 								},
 								MouseLeave: () => {
-									AnimateBinding(this.centerLocation, 0.5, 0.3);
+									if (!this.selected) AnimateBinding(this.centerLocation, 0.5, 0.3);
+								},
+								MouseButton1Click: () => {
+									this.pressSound.Play();
+									this.onSelected(TeamsTypes.Human);
 								},
 							}}
 						>
@@ -102,10 +123,15 @@ class SelectTeamGui extends Roact.Component<Props, State> {
 							Position={new UDim2(0.5, 0, 0.4, 0)}
 							Event={{
 								MouseEnter: () => {
-									AnimateBinding(this.centerLocation, 0.4, 0.3);
+									this.hoverSound.Play();
+									if (!this.selected) AnimateBinding(this.centerLocation, 0.4, 0.3);
 								},
 								MouseLeave: () => {
-									AnimateBinding(this.centerLocation, 0.5, 0.3);
+									if (!this.selected) AnimateBinding(this.centerLocation, 0.5, 0.3);
+								},
+								MouseButton1Click: () => {
+									this.pressSound.Play();
+									this.onSelected(TeamsTypes.Zombie);
 								},
 							}}
 						>
@@ -138,7 +164,7 @@ class SelectTeamGui extends Roact.Component<Props, State> {
 						AnchorPoint={new Vector2(0.5, 0.5)}
 						Position={Roact.joinBindings([this.centerLocation[0], this.centerLineBinding[0]]).map(
 							([center, step]) => {
-								return new UDim2(center, 0, 1.5 - math.min(1, step * 2), 0);
+								return new UDim2(center, 0, 2 - math.min(1.5, step * 3), 0);
 							},
 						)}
 						Rotation={this.centerLineBinding[0].map((step) => {
@@ -151,14 +177,20 @@ class SelectTeamGui extends Roact.Component<Props, State> {
 						BackgroundColor3={Color3.fromRGB(79, 197, 103)}
 						Font={Enum.Font.SourceSans}
 						AnchorPoint={new Vector2(0.5, 0.5)}
-						Position={this.centerLineBinding[0].map((step) => new UDim2(0.5, 0, 0.7 + step / 2, 0))}
+						Position={this.playButtonLocation[0].map((step) => new UDim2(0.5, 0, step, 0))}
 						Size={new UDim2(0.5, 0, 0.1, 0)}
 						Text={"Play"}
 						TextColor3={Color3.fromRGB(255, 255, 255)}
 						TextSize={40}
 						TextWrapped={true}
 						Event={{
+							MouseEnter: () => {
+								this.hoverSound.Play();
+							},
 							MouseButton1Click: () => {
+								this.pressSound.Play();
+								this.selected = false;
+								AnimateBinding(this.playButtonLocation, 1.4, 0.5);
 								AnimateBinding(this.centerLineBinding, 1, 1);
 								wait(0.7);
 								AnimateBinding(this.rightPageBinding, 1, 0.7);
@@ -177,6 +209,15 @@ class SelectTeamGui extends Roact.Component<Props, State> {
 				</TopbarOffset>
 			</screengui>
 		);
+	}
+	constructor(props: Props) {
+		super(props);
+		this.hoverSound = new Instance("Sound", SoundService);
+		this.hoverSound.SoundId = "rbxassetid://718616853";
+		this.pressSound = new Instance("Sound", SoundService);
+		this.pressSound.SoundId = "rbxassetid://5980034517";
+		this.release = new Instance("Sound", SoundService);
+		this.release.SoundId = "rbxassetid://6042054037";
 	}
 }
 export { SelectTeamGui };

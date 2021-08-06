@@ -1,9 +1,34 @@
 import Roact from "@rbxts/roact";
-import { Players } from "@rbxts/services";
+import { Players, UserInputService } from "@rbxts/services";
 import { SelectTeamGui } from "shared/components/selectteam";
+
+const Player = Players.LocalPlayer;
+
+UserInputService.InputBegan.Connect((input, gameProcessed) => {
+	if (!gameProcessed) {
+		if (input.KeyCode === Enum.KeyCode.LeftShift) {
+			const humanoid = Player.Character?.FindFirstChildOfClass("Humanoid");
+			if (humanoid) {
+				humanoid.WalkSpeed = 24;
+			}
+		}
+	}
+});
+
+UserInputService.InputEnded.Connect((input, gameProcessed) => {
+	if (!gameProcessed) {
+		if (input.KeyCode === Enum.KeyCode.LeftShift) {
+			const humanoid = Player.Character?.FindFirstChildOfClass("Humanoid");
+			if (humanoid) {
+				humanoid.WalkSpeed = 16;
+			}
+		}
+	}
+});
+
 Roact.mount(
 	<>
 		<SelectTeamGui />
 	</>,
-	Players.LocalPlayer.WaitForChild("PlayerGui"),
+	Player.WaitForChild("PlayerGui"),
 );

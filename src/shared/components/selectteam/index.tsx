@@ -1,14 +1,14 @@
 import Roact from "@rbxts/roact";
 import Rodux, { Action } from "@rbxts/rodux";
-import { ReplicatedStorage, SoundService } from "@rbxts/services";
+import { Players, ReplicatedStorage, SoundService } from "@rbxts/services";
 
-import { AnimateBinding } from "shared/Modules/util";
+import { AnimateBinding } from "shared/util";
 import { DisplayOrder } from "shared/types/DisplayOrders";
-import { ReplicatedStorageTree } from "shared/types/ReplicatedStorageTree";
 import { TeamsTypes } from "shared/types/Teams";
 import { TopbarOffset } from "../topbaroffset";
 import { Pattern } from "./pattern";
 import { Viewport } from "./viewport";
+import { Models, Remotes } from "shared/items";
 
 interface Props {}
 interface State {
@@ -36,7 +36,7 @@ class SelectTeamGui extends Roact.Component<Props, State> {
 
 	onSelected(side: TeamsTypes) {
 		this.selected = true;
-		print(`Selected ${side}`);
+		Remotes.TeamSelected.FireServer(TeamsTypes.Zombie);
 		AnimateBinding(this.centerLocation, 0.5, 0.5);
 		AnimateBinding(this.centerLineBinding, 0, 1);
 		wait(0.5);
@@ -78,10 +78,7 @@ class SelectTeamGui extends Roact.Component<Props, State> {
 								},
 							}}
 						>
-							<Viewport
-								Model={(ReplicatedStorage as ReplicatedStorageTree).Models.Human}
-								CameraRef={this.leftCameraRef}
-							/>
+							<Viewport Model={Models.Human} CameraRef={this.leftCameraRef} />
 						</textbutton>
 						<textlabel
 							BackgroundTransparency={1}
@@ -135,10 +132,7 @@ class SelectTeamGui extends Roact.Component<Props, State> {
 								},
 							}}
 						>
-							<Viewport
-								Model={(ReplicatedStorage as ReplicatedStorageTree).Models.Human}
-								CameraRef={this.rightCameraRef}
-							/>
+							<Viewport Model={Models.Human} CameraRef={this.rightCameraRef} />
 						</textbutton>
 						<textlabel
 							BackgroundTransparency={1}

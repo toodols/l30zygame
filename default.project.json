@@ -12,19 +12,23 @@
 		},
 		"ReplicatedStorage": {
 			"$className": "ReplicatedStorage",
-			"Remotes": {
-				"$className": "Folder"
-			},
-			"Models": {
-				"$className": "Folder"
-			},
 			"rbxts_include": {
 				"$path": "include",
 				"node_modules": {
 					"$path": "node_modules/@rbxts"
 				}
 			},
+			"Models": {
+				"$className": "Folder"
+			},
+			"Remotes": {
+				"$className": "Folder"
+			},
 			"$path": "out/shared"
+		},
+		"ServerStorage": {
+			"$className": "ServerStorage"
+
 		},
 		"StarterPlayer": {
 			"$className": "StarterPlayer",

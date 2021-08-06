@@ -132,7 +132,7 @@ class SelectTeamGui extends Roact.Component<Props, State> {
 								},
 							}}
 						>
-							<Viewport Model={Models.Human} CameraRef={this.rightCameraRef} />
+							<Viewport Model={Models.Zombie} CameraRef={this.rightCameraRef} />
 						</textbutton>
 						<textlabel
 							BackgroundTransparency={1}

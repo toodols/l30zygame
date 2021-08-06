@@ -1,5 +1,6 @@
 import Roact from "@rbxts/roact";
 import { Players, UserInputService } from "@rbxts/services";
+import { PlayerDisplay } from "shared/components/playerdisplay";
 import { SelectTeamGui } from "shared/components/selectteam";
 
 const Player = Players.LocalPlayer;
@@ -29,6 +30,7 @@ UserInputService.InputEnded.Connect((input, gameProcessed) => {
 Roact.mount(
 	<>
 		<SelectTeamGui />
+		<PlayerDisplay />
 	</>,
 	Player.WaitForChild("PlayerGui"),
 );

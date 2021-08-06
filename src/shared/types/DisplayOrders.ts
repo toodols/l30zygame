@@ -1,4 +1,5 @@
 export enum DisplayOrder {
 	SelectTeamGui = 1,
-	HealthGui = 0,
+
+	DisplayGui = 0,
 }

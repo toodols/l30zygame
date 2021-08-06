@@ -12,6 +12,7 @@ const Remotes = ReplicatedStorage.FindFirstChild("Remotes") as Folder & {
 
 const Models = ReplicatedStorage.FindFirstChild("Models") as Folder & {
 	Human: Model;
+	Zombie: Model;
 };
 
 export { Remotes, Models };

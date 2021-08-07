@@ -36,7 +36,7 @@ class SelectTeamGui extends Roact.Component<Props, State> {
 
 	onSelected(side: TeamsTypes) {
 		this.selected = true;
-		Remotes.TeamSelected.FireServer(TeamsTypes.Zombie);
+		Remotes.TeamSelected.FireServer(side);
 		AnimateBinding(this.centerLocation, 0.5, 0.5);
 		AnimateBinding(this.centerLineBinding, 0, 1);
 		wait(0.5);
@@ -46,7 +46,7 @@ class SelectTeamGui extends Roact.Component<Props, State> {
 
 	render() {
 		return (
-			<screengui Key="SelectTeamGui" DisplayOrder={DisplayOrder.SelectTeamGui}>
+			<screengui Key="SelectTeamGui" DisplayOrder={DisplayOrder.SelectTeamGui} ResetOnSpawn={false}>
 				<TopbarOffset>
 					<frame
 						Key="ScreenLeft"

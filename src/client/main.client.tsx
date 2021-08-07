@@ -1,5 +1,5 @@
 import Roact from "@rbxts/roact";
-import { Players, UserInputService } from "@rbxts/services";
+import { Players, UserInputService, Workspace } from "@rbxts/services";
 import { PlayerDisplay } from "shared/components/playerdisplay";
 import { SelectTeamGui } from "shared/components/selectteam";
 

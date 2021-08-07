@@ -27,6 +27,7 @@ class PlayerDisplay extends Roact.Component {
 					Key="Display"
 					ZIndexBehavior={Enum.ZIndexBehavior.Sibling}
 					DisplayOrder={DisplayOrder.DisplayGui}
+					ResetOnSpawn={false}
 				>
 					<HurtDisplay Health={this.state.health} />
 					<Display

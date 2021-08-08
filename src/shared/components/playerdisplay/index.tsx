@@ -10,6 +10,7 @@ class PlayerDisplay extends Roact.Component {
 
 		const OnCharacter = (character: Model) => {
 			const humanoid = character.WaitForChild("Humanoid") as Humanoid;
+			this.setState({ ...this.state, health: math.floor(humanoid.Health) });
 			humanoid.GetPropertyChangedSignal("Health").Connect(() => {
 				this.setState({ ...this.state, health: math.floor(humanoid.Health) });
 			});

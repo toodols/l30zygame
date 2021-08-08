@@ -21,7 +21,7 @@ class SelectTeamGui extends Roact.Component<Props, State> {
 	leftPageBinding = Roact.createBinding(0);
 	rightPageBinding = Roact.createBinding(0);
 	centerLocation = Roact.createBinding(0.5);
-	playButtonLocation = Roact.createBinding(0.7);
+	playButtonLocation = Roact.createBinding(0);
 	leftCameraRef = Roact.createRef<Camera>();
 	rightCameraRef = Roact.createRef<Camera>();
 	selected = false; //prevents
@@ -37,6 +37,14 @@ class SelectTeamGui extends Roact.Component<Props, State> {
 	onSelected(side: TeamsTypes) {
 		this.selected = true;
 		Remotes.TeamSelected.FireServer(side);
+		this.hideMenu();
+	}
+
+	showPlayButton() {
+		AnimateBinding(this.playButtonLocation, 0, 0.5);
+	}
+
+	hideMenu() {
 		AnimateBinding(this.centerLocation, 0.5, 0.5);
 		AnimateBinding(this.centerLineBinding, 0, 1);
 		wait(0.5);
@@ -167,11 +175,37 @@ class SelectTeamGui extends Roact.Component<Props, State> {
 						ZIndex={2}
 					></frame>
 					<textbutton
+						AnchorPoint={this.leftPageBinding[0].map((step) => new Vector2(step, 1))}
+						Position={new UDim2(1, 0, 1, 0)}
+						BackgroundColor3={Color3.fromRGB(79, 197, 103)}
+						Size={new UDim2(0.2, 0, 0.07, 0)}
+						Text="Back"
+						TextColor3={Color3.fromRGB(255, 255, 255)}
+						TextSize={20}
+						BorderSizePixel={0}
+						ZIndex={3}
+						Event={{
+							MouseButton1Click: () => {
+								this.showPlayButton();
+								this.hideMenu();
+							},
+						}}
+					>
+						<Pattern />
+						<uiaspectratioconstraint AspectRatio={8} />
+						<uicorner CornerRadius={new UDim(0.06, 0)} />
+						<uigradient
+							Color={new ColorSequence(Color3.fromRGB(141, 141, 141), Color3.fromRGB(255, 255, 255))}
+							Rotation={90}
+						/>
+					</textbutton>
+					<textbutton
 						Key="PlayButton"
 						BackgroundColor3={Color3.fromRGB(79, 197, 103)}
 						Font={Enum.Font.SourceSans}
 						AnchorPoint={new Vector2(0.5, 0.5)}
-						Position={this.playButtonLocation[0].map((step) => new UDim2(0.5, 0, step, 0))}
+						//start 0.85, end >=1.35
+						Position={this.playButtonLocation[0].map((step) => new UDim2(0.5, 0, step / 2 + 0.85, 0))}
 						Size={new UDim2(0.5, 0, 0.1, 0)}
 						Text={"Play"}
 						TextColor3={Color3.fromRGB(255, 255, 255)}
@@ -184,7 +218,7 @@ class SelectTeamGui extends Roact.Component<Props, State> {
 							MouseButton1Click: () => {
 								this.pressSound.Play();
 								this.selected = false;
-								AnimateBinding(this.playButtonLocation, 1.4, 0.5);
+								AnimateBinding(this.playButtonLocation, 1, 0.5);
 								AnimateBinding(this.centerLineBinding, 1, 1);
 								wait(0.7);
 								AnimateBinding(this.rightPageBinding, 1, 0.7);

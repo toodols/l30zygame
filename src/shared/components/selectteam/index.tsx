@@ -10,7 +10,9 @@ import { Pattern } from "./pattern";
 import { Viewport } from "./viewport";
 import { Models, Remotes } from "shared/items";
 
-interface Props {}
+interface Props {
+	ref: (c: SelectTeamGui) => void;
+}
 interface State {
 	centerLocation: number;
 	chooseScreen: boolean;
@@ -21,7 +23,7 @@ class SelectTeamGui extends Roact.Component<Props, State> {
 	leftPageBinding = Roact.createBinding(0);
 	rightPageBinding = Roact.createBinding(0);
 	centerLocation = Roact.createBinding(0.5);
-	playButtonLocation = Roact.createBinding(0);
+	playButtonLocation = Roact.createBinding(1);
 	leftCameraRef = Roact.createRef<Camera>();
 	rightCameraRef = Roact.createRef<Camera>();
 	selected = false; //prevents
@@ -54,7 +56,12 @@ class SelectTeamGui extends Roact.Component<Props, State> {
 
 	render() {
 		return (
-			<screengui Key="SelectTeamGui" DisplayOrder={DisplayOrder.SelectTeamGui} ResetOnSpawn={false}>
+			<screengui
+				Key="SelectTeamGui"
+				DisplayOrder={DisplayOrder.SelectTeamGui}
+				ZIndexBehavior="Sibling"
+				ResetOnSpawn={false}
+			>
 				<TopbarOffset>
 					<frame
 						Key="ScreenLeft"
@@ -180,8 +187,9 @@ class SelectTeamGui extends Roact.Component<Props, State> {
 						BackgroundColor3={Color3.fromRGB(79, 197, 103)}
 						Size={new UDim2(0.2, 0, 0.07, 0)}
 						Text="Back"
+						Font={"SourceSans"}
 						TextColor3={Color3.fromRGB(255, 255, 255)}
-						TextSize={20}
+						TextSize={30}
 						BorderSizePixel={0}
 						ZIndex={3}
 						Event={{
@@ -191,18 +199,18 @@ class SelectTeamGui extends Roact.Component<Props, State> {
 							},
 						}}
 					>
-						<Pattern />
+						{/* <Pattern /> */}
 						<uiaspectratioconstraint AspectRatio={8} />
 						<uicorner CornerRadius={new UDim(0.06, 0)} />
-						<uigradient
+						{/* <uigradient
 							Color={new ColorSequence(Color3.fromRGB(141, 141, 141), Color3.fromRGB(255, 255, 255))}
 							Rotation={90}
-						/>
+						/> */}
 					</textbutton>
 					<textbutton
 						Key="PlayButton"
 						BackgroundColor3={Color3.fromRGB(79, 197, 103)}
-						Font={Enum.Font.SourceSans}
+						Font={"SourceSans"}
 						AnchorPoint={new Vector2(0.5, 0.5)}
 						//start 0.85, end >=1.35
 						Position={this.playButtonLocation[0].map((step) => new UDim2(0.5, 0, step / 2 + 0.85, 0))}
@@ -229,10 +237,10 @@ class SelectTeamGui extends Roact.Component<Props, State> {
 					>
 						<uiaspectratioconstraint AspectRatio={15} />
 						<uicorner CornerRadius={new UDim(0.06, 0)} />
-						<uigradient
+						{/* <uigradient
 							Color={new ColorSequence(Color3.fromRGB(141, 141, 141), Color3.fromRGB(255, 255, 255))}
 							Rotation={90}
-						/>
+						/> */}
 					</textbutton>
 				</TopbarOffset>
 			</screengui>
@@ -240,6 +248,7 @@ class SelectTeamGui extends Roact.Component<Props, State> {
 	}
 	constructor(props: Props) {
 		super(props);
+		this.props.ref(this);
 		this.hoverSound = new Instance("Sound", SoundService);
 		this.hoverSound.SoundId = "rbxassetid://718616853";
 		this.pressSound = new Instance("Sound", SoundService);

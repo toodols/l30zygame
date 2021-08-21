@@ -3,149 +3,40 @@ interface Workspace extends Model {
 		Baseplate: Part & {
 			Texture: Texture;
 		};
-		Wedge: WedgePart;
+	};
+	["Keyboard??"]: Part;
+	["Hologram Device"]: UnionOperation;
+	["European Soldier"]: Model & {
+		["Left Leg"]: Part;
+		["Right Leg"]: Part;
+		["Work Axe"]: Model & {
+			Handle: UnionOperation;
+			["Axe Middle"]: UnionOperation;
+			Union: UnionOperation;
+		};
+		["Shield 2"]: Model & {
+			Straps: UnionOperation;
+		};
+		Part: Part & {
+			Mesh: BlockMesh;
+		};
+		Torso: Part;
+		["Left Arm"]: Part;
+		Head: UnionOperation;
+	};
+	ye: Part & {
+		Mesh: SpecialMesh;
+	};
+	Pod: Model & {
 		Model: Model;
-	};
-	Camera: Camera;
-	Game: Folder & {
-		Human: Folder & {
-			Base: Model & {
-				Part: Part & {
-					Weld: Weld;
-				};
-			};
-			Spawns: Folder;
+		thing: Model & {
+			Union: UnionOperation;
 		};
-		Lobby: Folder & {
-			Map: Folder & {
-				["Large Noop Spawner + Energy Tanks"]: Model & {
-					["Large Noob Spawner"]: Model & {
-						Part: Part;
-						["Spawn Part"]: Part & {
-							["spawn decal"]: Decal;
-						};
-					};
-				};
-				fist: Model & {
-					["Left Leg"]: Part & {
-						["5"]: MeshPart & {
-							Weld: ManualWeld;
-						};
-						MeshPart: MeshPart & {
-							Weld: ManualWeld;
-						};
-					};
-					Humanoid: Humanoid & {
-						Animator: Animator;
-					};
-					["Right Leg"]: Part & {
-						["5"]: MeshPart & {
-							Weld: ManualWeld;
-						};
-						MeshPart: MeshPart & {
-							Weld: ManualWeld;
-						};
-					};
-					Head: Part & {
-						Mesh: SpecialMesh;
-						Decal: Decal;
-					};
-					Torso: Part & {
-						["Left Shoulder"]: Motor6D & {
-							DefaultC1: CFrameValue;
-						};
-						["Right Shoulder"]: Motor6D & {
-							DefaultC1: CFrameValue;
-						};
-						Neck: Motor6D & {
-							DefaultC1: CFrameValue;
-						};
-						["Left Hip"]: Motor6D & {
-							DefaultC1: CFrameValue;
-						};
-						Chest: Model & {
-							Middle: Part & {
-								Weld: ManualWeld;
-							};
-							plateminus: MeshPart & {
-								Weld: ManualWeld;
-							};
-						};
-						["Right Hip"]: Motor6D & {
-							DefaultC1: CFrameValue;
-						};
-					};
-					HumanoidRootPart: Part & {
-						["Root Hip"]: Motor6D & {
-							DefaultC1: CFrameValue;
-						};
-					};
-					["Right Arm"]: Part & {
-						Handle: Part & {
-							Mesh: SpecialMesh;
-							Weld: ManualWeld;
-						};
-						MeshPart: MeshPart & {
-							Weld: ManualWeld;
-						};
-						["Glove Left"]: MeshPart & {
-							Weld: ManualWeld;
-						};
-						Mesh1: MeshPart & {
-							Weld: ManualWeld;
-						};
-					};
-					["Left Arm"]: Part & {
-						MeshPart: MeshPart & {
-							Weld: ManualWeld;
-						};
-						["Glove Left"]: MeshPart & {
-							Weld: ManualWeld;
-						};
-						Mesh1: MeshPart & {
-							Weld: ManualWeld;
-						};
-					};
-					Script: Script & {
-						Animation: Animation;
-					};
-					AnimSaves: Model & {
-						["Automatic Save"]: KeyframeSequence;
-						h: KeyframeSequence;
-						["I uh, tried"]: KeyframeSequence;
-						["Temp - imported anim of mine"]: KeyframeSequence;
-					};
-					["Body Colors"]: BodyColors;
-				};
-				Turret: Model;
-				Base: Model & {
-					Model: Model & {
-						Union: UnionOperation;
-					};
-				};
-			};
-			Spawns: Folder & {
-				Part: Part;
-			};
-		};
-		Zombie: Folder & {
-			Base: Model & {
-				Part: Part & {
-					Weld: Weld;
-				};
-			};
-			Spawns: Folder;
+		door: Model & {
+			Union: UnionOperation;
 		};
 	};
-	Realism: Folder;
-	_CPData: Backpack;
 	["Auto-Delete"]: Folder & {
-		["Normal Noob Spawner"]: Model & {
-			Part: Part;
-			["Spawn Part"]: Part & {
-				["spawn decal"]: Decal;
-			};
-		};
 		Tank: Model & {
 			Top: Model & {
 				Model: Model & {
@@ -165,8 +56,6 @@ interface Workspace extends Model {
 			Main: Model;
 			Union: UnionOperation;
 		};
-		["Ballista (Edit this if you want)"]: Model;
-		["Roblox Logo"]: Model;
 		["Noobs core"]: Model & {
 			Model: Model & {
 				Part: Part & {
@@ -189,8 +78,27 @@ interface Workspace extends Model {
 				};
 			};
 		};
-		["Spawn Part"]: Part & {
-			["spawn decal"]: Decal;
+		["killerwolfdragon1222's sword"]: Model & {
+			Part1: Part & {
+				Mesh: SpecialMesh;
+			};
+			Beamstart2: Part & {
+				Beam: Beam;
+				Attachment0: Attachment;
+			};
+			Beamend1: Part & {
+				Attachment1: Attachment;
+			};
+			Beamend2: Part & {
+				Attachment1: Attachment;
+			};
+			Beamstart1: Part & {
+				Beam: Beam;
+				Attachment0: Attachment;
+			};
+			Part4: Part & {
+				Mesh: SpecialMesh;
+			};
 		};
 		["dont use"]: Model & {
 			["Left Leg"]: Part & {
@@ -219,8 +127,9 @@ interface Workspace extends Model {
 				};
 			};
 			Torso: Part & {
-				["Left Shoulder"]: Motor6D & {
-					DefaultC1: CFrameValue;
+				Chest: Model & {
+					Middle: Part;
+					plateminus: MeshPart;
 				};
 				["Right Shoulder"]: Motor6D & {
 					DefaultC1: CFrameValue;
@@ -231,19 +140,14 @@ interface Workspace extends Model {
 				["Left Hip"]: Motor6D & {
 					DefaultC1: CFrameValue;
 				};
-				Chest: Model & {
-					Middle: Part;
-					plateminus: MeshPart;
-				};
 				["Right Hip"]: Motor6D & {
 					DefaultC1: CFrameValue;
 				};
-			};
-			HumanoidRootPart: Part & {
-				["Root Hip"]: Motor6D & {
+				["Left Shoulder"]: Motor6D & {
 					DefaultC1: CFrameValue;
 				};
 			};
+			HumanoidRootPart: Part;
 			["Right Arm"]: Part & {
 				MeshPart: MeshPart;
 				["Glove Left"]: MeshPart;
@@ -285,8 +189,11 @@ interface Workspace extends Model {
 				Decal: Decal;
 			};
 			Torso: Part & {
-				["Left Shoulder"]: Motor6D & {
-					DefaultC1: CFrameValue;
+				Chest: Model & {
+					Middle: Part;
+					plateminus: MeshPart & {
+						Weld: ManualWeld;
+					};
 				};
 				["Right Shoulder"]: Motor6D & {
 					DefaultC1: CFrameValue;
@@ -294,18 +201,13 @@ interface Workspace extends Model {
 				Neck: Motor6D & {
 					DefaultC1: CFrameValue;
 				};
+				["Right Hip"]: Motor6D & {
+					DefaultC1: CFrameValue;
+				};
 				["Left Hip"]: Motor6D & {
 					DefaultC1: CFrameValue;
 				};
-				Chest: Model & {
-					Middle: Part & {
-						Weld: ManualWeld;
-					};
-					plateminus: MeshPart & {
-						Weld: ManualWeld;
-					};
-				};
-				["Right Hip"]: Motor6D & {
+				["Left Shoulder"]: Motor6D & {
 					DefaultC1: CFrameValue;
 				};
 			};
@@ -315,9 +217,7 @@ interface Workspace extends Model {
 				};
 			};
 			["Right Arm"]: Part & {
-				MeshPart: MeshPart & {
-					Weld: ManualWeld;
-				};
+				MeshPart: MeshPart;
 				["Glove Left"]: MeshPart & {
 					Weld: ManualWeld;
 				};
@@ -329,12 +229,8 @@ interface Workspace extends Model {
 				MeshPart: MeshPart & {
 					Weld: ManualWeld;
 				};
-				["Glove Left"]: MeshPart & {
-					Weld: ManualWeld;
-				};
-				Mesh1: MeshPart & {
-					Weld: ManualWeld;
-				};
+				["Glove Left"]: MeshPart;
+				Mesh1: MeshPart;
 			};
 			["Body Colors"]: BodyColors;
 		};
@@ -355,17 +251,13 @@ interface Workspace extends Model {
 				["5"]: MeshPart & {
 					Weld: ManualWeld;
 				};
-				MeshPart: MeshPart & {
-					Weld: ManualWeld;
-				};
+				MeshPart: MeshPart;
 			};
 			Humanoid: Humanoid & {
 				Animator: Animator;
 			};
 			["Right Leg"]: Part & {
-				["5"]: MeshPart & {
-					Weld: ManualWeld;
-				};
+				["5"]: MeshPart;
 				MeshPart: MeshPart & {
 					Weld: ManualWeld;
 				};
@@ -375,28 +267,9 @@ interface Workspace extends Model {
 				Decal: Decal;
 			};
 			Torso: Part & {
-				["Left Shoulder"]: Motor6D & {
-					DefaultC1: CFrameValue;
-				};
-				["Right Shoulder"]: Motor6D & {
-					DefaultC1: CFrameValue;
-				};
-				Neck: Motor6D & {
-					DefaultC1: CFrameValue;
-				};
-				["Left Hip"]: Motor6D & {
-					DefaultC1: CFrameValue;
-				};
 				Chest: Model & {
-					Middle: Part & {
-						Weld: ManualWeld;
-					};
-					plateminus: MeshPart & {
-						Weld: ManualWeld;
-					};
-				};
-				["Right Hip"]: Motor6D & {
-					DefaultC1: CFrameValue;
+					Middle: Part;
+					plateminus: MeshPart;
 				};
 			};
 			HumanoidRootPart: Part & {
@@ -409,20 +282,14 @@ interface Workspace extends Model {
 				MeshPart: MeshPart & {
 					Weld: ManualWeld;
 				};
-				["Glove Left"]: MeshPart & {
-					Weld: ManualWeld;
-				};
+				["Glove Left"]: MeshPart;
 				Mesh1: MeshPart & {
 					Weld: ManualWeld;
 				};
 			};
 			["Left Arm"]: Part & {
-				MeshPart: MeshPart & {
-					Weld: ManualWeld;
-				};
-				["Glove Left"]: MeshPart & {
-					Weld: ManualWeld;
-				};
+				MeshPart: MeshPart;
+				["Glove Left"]: MeshPart;
 				Mesh1: MeshPart & {
 					Weld: ManualWeld;
 				};
@@ -430,6 +297,7 @@ interface Workspace extends Model {
 			Sword: Tool & {
 				Handle: Part & {
 					AttachmentMiddle: Attachment;
+					TouchInterest: TouchTransmitter;
 					MeleeTrail: Trail;
 					MeleeTrail2: Trail;
 					AttachmentBottom: Attachment;
@@ -483,31 +351,7 @@ interface Workspace extends Model {
 			Humanoid: Humanoid;
 			Head: Part;
 		};
-		Dummy: Model & {
-			["Left Leg"]: Part;
-			Humanoid: Humanoid;
-			["Right Leg"]: Part;
-			["Left Arm"]: Part;
-			Head: Part & {
-				Face: Decal;
-			};
-			Torso: Part & {
-				["Left Shoulder"]: Motor6D;
-				["Right Shoulder"]: Motor6D;
-				Neck: Motor6D;
-				["Left Hip"]: Motor6D;
-				["Right Hip"]: Motor6D;
-			};
-			HumanoidRootPart: Part & {
-				["Root Hip"]: Motor6D;
-			};
-			["Right Arm"]: Part;
-		};
 		Fabric: Model & {
-			Humanoid: Humanoid;
-			Head: Part;
-		};
-		["Exterior Woods"]: Model & {
 			Humanoid: Humanoid;
 			Head: Part;
 		};
@@ -555,34 +399,58 @@ interface Workspace extends Model {
 				GripAttachment: Attachment;
 			};
 		};
+		["i dont know"]: Model & {
+			["Left Leg"]: Part & {
+				["5"]: MeshPart;
+				MeshPart: MeshPart;
+			};
+			Humanoid: Humanoid & {
+				Animator: Animator;
+			};
+			["Right Leg"]: Part & {
+				["5"]: MeshPart;
+				MeshPart: MeshPart;
+			};
+			Head: Part & {
+				Mesh: SpecialMesh;
+				Decal: Decal;
+			};
+			Torso: Part & {
+				Chest: Model & {
+					Middle: Part;
+					plateminus: MeshPart;
+				};
+			};
+			HumanoidRootPart: Part;
+			["Right Arm"]: Part & {
+				MeshPart: MeshPart;
+				["Glove Left"]: MeshPart;
+				Mesh1: MeshPart;
+			};
+			["Left Arm"]: Part & {
+				MeshPart: MeshPart;
+				["Glove Left"]: MeshPart;
+				Mesh1: MeshPart & {
+					Weld: ManualWeld;
+				};
+			};
+			Script: Script & {
+				Animation: Animation;
+			};
+			AnimSaves: Model & {
+				["I uh, tried"]: KeyframeSequence;
+				h: KeyframeSequence;
+				["Automatic Save"]: KeyframeSequence;
+				["Temp - imported anim of mine"]: KeyframeSequence;
+			};
+			["Body Colors"]: BodyColors;
+		};
 		bow: Model & {
 			animate: Part;
 		};
 		Script: Script;
 		Fire: Part;
 		Sledgehammer: Model;
-		["killerwolfdragon1222's sword"]: Model & {
-			Part1: Part & {
-				Mesh: SpecialMesh;
-			};
-			Beamstart2: Part & {
-				Beam: Beam;
-				Attachment0: Attachment;
-			};
-			Beamend1: Part & {
-				Attachment1: Attachment;
-			};
-			Beamend2: Part & {
-				Attachment1: Attachment;
-			};
-			Beamstart1: Part & {
-				Beam: Beam;
-				Attachment0: Attachment;
-			};
-			Part4: Part & {
-				Mesh: SpecialMesh;
-			};
-		};
 		["Jetpack Zombie"]: Model & {
 			["Left Leg"]: Part & {
 				Script: Script;
@@ -620,8 +488,8 @@ interface Workspace extends Model {
 				Jetpack: Model & {
 					Jetpack: MeshPart & {
 						Boost: Sound;
-						WeldConstraint: WeldConstraint;
 						Light: Motor6D;
+						WeldConstraint: WeldConstraint;
 					};
 					Light: MeshPart;
 				};
@@ -771,6 +639,10 @@ interface Workspace extends Model {
 				};
 			};
 		};
+		Roofing: Model & {
+			Humanoid: Humanoid;
+			Head: Part;
+		};
 		["Pickaxe Prop"]: Model & {
 			bottom: Part;
 			middle: Part;
@@ -779,13 +651,6 @@ interface Workspace extends Model {
 		["Interior Tiles and Bricks"]: Model & {
 			Humanoid: Humanoid;
 			Head: Part;
-		};
-		["Sign Not A Free Model (Maybe)"]: Model & {
-			Text: Part & {
-				SurfaceGui: SurfaceGui & {
-					TextLabel: TextLabel;
-				};
-			};
 		};
 		Retard: Part & {
 			Attachment0: Attachment;
@@ -798,107 +663,16 @@ interface Workspace extends Model {
 			Humanoid: Humanoid;
 			Head: Part;
 		};
-		["i dont know"]: Model & {
-			["Left Leg"]: Part & {
-				["5"]: MeshPart & {
-					Weld: ManualWeld;
-				};
-				MeshPart: MeshPart & {
-					Weld: ManualWeld;
-				};
-			};
-			Humanoid: Humanoid & {
-				Animator: Animator;
-			};
-			["Right Leg"]: Part & {
-				["5"]: MeshPart & {
-					Weld: ManualWeld;
-				};
-				MeshPart: MeshPart & {
-					Weld: ManualWeld;
-				};
-			};
-			Head: Part & {
-				Mesh: SpecialMesh;
-				Decal: Decal;
-			};
-			Torso: Part & {
-				Chest: Model & {
-					Middle: Part & {
-						Weld: ManualWeld;
-					};
-					plateminus: MeshPart & {
-						Weld: ManualWeld;
-					};
-				};
-				["Right Shoulder"]: Motor6D & {
-					DefaultC1: CFrameValue;
-				};
-				Neck: Motor6D & {
-					DefaultC1: CFrameValue;
-				};
-				["Right Hip"]: Motor6D & {
-					DefaultC1: CFrameValue;
-				};
-				["Left Hip"]: Motor6D & {
-					DefaultC1: CFrameValue;
-				};
-				["Left Shoulder"]: Motor6D & {
-					DefaultC1: CFrameValue;
-				};
-			};
-			HumanoidRootPart: Part & {
-				["Root Hip"]: Motor6D & {
-					DefaultC1: CFrameValue;
-				};
-			};
-			["Right Arm"]: Part & {
-				MeshPart: MeshPart & {
-					Weld: ManualWeld;
-				};
-				["Glove Left"]: MeshPart & {
-					Weld: ManualWeld;
-				};
-				Mesh1: MeshPart & {
-					Weld: ManualWeld;
-				};
-			};
-			["Left Arm"]: Part & {
-				MeshPart: MeshPart & {
-					Weld: ManualWeld;
-				};
-				["Glove Left"]: MeshPart & {
-					Weld: ManualWeld;
-				};
-				Mesh1: MeshPart & {
-					Weld: ManualWeld;
-				};
-			};
-			Script: Script & {
-				Animation: Animation;
-			};
-			AnimSaves: Model & {
-				["I uh, tried"]: KeyframeSequence;
-				h: KeyframeSequence;
-				["Automatic Save"]: KeyframeSequence;
-				["Temp - imported anim of mine"]: KeyframeSequence;
-			};
-			["Body Colors"]: BodyColors;
-		};
 		["Interior Woods"]: Model & {
 			Humanoid: Humanoid;
 			Head: Part;
 		};
-		Roofing: Model & {
+		["Exterior Woods"]: Model & {
 			Humanoid: Humanoid;
 			Head: Part;
 		};
 		Pickaxe: Model & {
-			Handle: Part & {
-				head: Motor6D;
-				middle: Motor6D;
-				bottom: Motor6D;
-			};
+			Handle: Part;
 			bottom: Part;
 			middle: Part;
 			head: MeshPart;
@@ -966,4 +740,165 @@ interface Workspace extends Model {
 			Head: Part;
 		};
 	};
+	Camera: Camera;
+	["Square w round edge"]: MeshPart & {
+		Weld: Weld;
+	};
+	["Spawn Part"]: UnionOperation & {
+		Decal: Decal;
+		Weld: Weld;
+	};
+	Game: Folder & {
+		Human: Folder & {
+			Base: Model & {
+				Part: Part & {
+					Weld: Weld;
+				};
+			};
+			Spawns: Folder;
+		};
+		Lobby: Folder & {
+			Map: Folder & {
+				["Large Noop Spawner + Energy Tanks"]: Model & {
+					["Large Noob Spawner"]: Model & {
+						Part: Part;
+						["Spawn Part"]: Part & {
+							["spawn decal"]: Decal;
+						};
+					};
+				};
+				fist: Model & {
+					["Left Leg"]: Part & {
+						["5"]: MeshPart & {
+							Weld: ManualWeld;
+						};
+						MeshPart: MeshPart & {
+							Weld: ManualWeld;
+						};
+					};
+					Humanoid: Humanoid & {
+						Animator: Animator;
+					};
+					["Right Leg"]: Part & {
+						["5"]: MeshPart & {
+							Weld: ManualWeld;
+						};
+						MeshPart: MeshPart & {
+							Weld: ManualWeld;
+						};
+					};
+					Head: Part & {
+						Mesh: SpecialMesh;
+						Decal: Decal;
+					};
+					Torso: Part & {
+						["Left Shoulder"]: Motor6D & {
+							DefaultC1: CFrameValue;
+						};
+						["Right Shoulder"]: Motor6D & {
+							DefaultC1: CFrameValue;
+						};
+						Neck: Motor6D & {
+							DefaultC1: CFrameValue;
+						};
+						["Right Hip"]: Motor6D & {
+							DefaultC1: CFrameValue;
+						};
+						["Left Hip"]: Motor6D & {
+							DefaultC1: CFrameValue;
+						};
+						Chest: Model & {
+							Middle: Part & {
+								Weld: ManualWeld;
+							};
+							plateminus: MeshPart & {
+								Weld: ManualWeld;
+							};
+						};
+					};
+					HumanoidRootPart: Part & {
+						["Root Hip"]: Motor6D & {
+							DefaultC1: CFrameValue;
+						};
+					};
+					["Right Arm"]: Part & {
+						Handle: Part & {
+							Mesh: SpecialMesh;
+							Weld: ManualWeld;
+						};
+						MeshPart: MeshPart & {
+							Weld: ManualWeld;
+						};
+						["Glove Left"]: MeshPart & {
+							Weld: ManualWeld;
+						};
+						Mesh1: MeshPart & {
+							Weld: ManualWeld;
+						};
+					};
+					["Left Arm"]: Part & {
+						MeshPart: MeshPart & {
+							Weld: ManualWeld;
+						};
+						["Glove Left"]: MeshPart & {
+							Weld: ManualWeld;
+						};
+						Mesh1: MeshPart & {
+							Weld: ManualWeld;
+						};
+					};
+					Script: Script & {
+						Animation: Animation;
+					};
+					AnimSaves: Model & {
+						["Automatic Save"]: KeyframeSequence;
+						h: KeyframeSequence;
+						["I uh, tried"]: KeyframeSequence;
+						["Temp - imported anim of mine"]: KeyframeSequence;
+					};
+					["Body Colors"]: BodyColors;
+				};
+				Turret: Model;
+				Shelf: Model & {
+					Union: UnionOperation;
+					["Shelf Holder"]: UnionOperation;
+				};
+				Base: Model & {
+					Model: Model & {
+						Union: UnionOperation;
+					};
+				};
+			};
+			Pods: Folder & {
+				Model: Model & {
+					Union: UnionOperation;
+					Pod_Hitbox: Part;
+					Pod: Model & {
+						Model: Model;
+						thing: Model & {
+							Union: UnionOperation;
+						};
+						door: Model & {
+							Union: UnionOperation;
+						};
+					};
+					Base: Model;
+				};
+			};
+			Spawns: Folder & {
+				Part: Part;
+			};
+		};
+		Zombie: Folder & {
+			Base: Model & {
+				Part: Part & {
+					Weld: Weld;
+				};
+			};
+			Spawns: Folder;
+		};
+	};
+	Realism: Folder;
+	_CPData: Backpack;
+	Base: Model;
 }

@@ -1,6 +1,6 @@
 enum TeamsTypes {
-	Zombie = "zombie",
-	Human = "human",
+	Blue = "blue",
+	Red = "red",
 	Lobby = "lobby",
 }
 

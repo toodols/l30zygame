@@ -1,5 +1,5 @@
 /*
-	Lobby, Human, Zombie
+	Lobby, Blue, Red
 */
 class TeamObject {
 	instance: Instance;
@@ -21,7 +21,7 @@ class TeamObject {
 }
 
 /*
-	Human, Zombie
+	Blue, Red
 */
 class PlayingTeamObject extends TeamObject {
 	constructor(instance: Instance) {

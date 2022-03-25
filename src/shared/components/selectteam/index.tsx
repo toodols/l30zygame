@@ -65,7 +65,7 @@ class SelectTeamGui extends Roact.Component<Props, State> {
 				<frame
 					Key="ScreenLeft"
 					Size={this.centerLocation[0].map((center) => new UDim2(center, 0, 1, 0))}
-					BackgroundColor3={Color3.fromRGB(255, 255, 140)}
+					BackgroundColor3={Color3.fromRGB(255, 0, 0)}
 					AnchorPoint={this.leftPageBinding[0].map((step) => new Vector2(1 - step, 0))}
 					BorderSizePixel={0}
 				>
@@ -88,16 +88,16 @@ class SelectTeamGui extends Roact.Component<Props, State> {
 							},
 							MouseButton1Click: () => {
 								this.pressSound.Play();
-								this.onSelected(TeamsTypes.Human);
+								this.onSelected(TeamsTypes.Red);
 							},
 						}}
 					>
-						<Viewport Model={Models.Human} CameraRef={this.leftCameraRef} />
+						<Viewport Model={Models.Red} CameraRef={this.leftCameraRef} />
 					</textbutton>
 					<textlabel
 						BackgroundTransparency={1}
 						TextColor3={new Color3(0, 0, 0)}
-						Text="Human"
+						Text="Red"
 						TextSize={45}
 						Position={new UDim2(0.5, 0, 0.8, 0)}
 						AnchorPoint={new Vector2(0.5, 0.5)}
@@ -115,7 +115,7 @@ class SelectTeamGui extends Roact.Component<Props, State> {
 				<frame
 					Key="ScreenRight"
 					Size={this.centerLocation[0].map((center) => new UDim2(1 - center, 0, 1, 0))}
-					BackgroundColor3={Color3.fromRGB(105, 152, 83)}
+					BackgroundColor3={Color3.fromRGB(0, 102, 255)}
 					Position={Roact.joinBindings({
 						center: this.centerLocation[0],
 						step: this.rightPageBinding[0],
@@ -142,16 +142,16 @@ class SelectTeamGui extends Roact.Component<Props, State> {
 							},
 							MouseButton1Click: () => {
 								this.pressSound.Play();
-								this.onSelected(TeamsTypes.Zombie);
+								this.onSelected(TeamsTypes.Blue);
 							},
 						}}
 					>
-						<Viewport Model={Models.Zombie} CameraRef={this.rightCameraRef} />
+						<Viewport Model={Models.Blue} CameraRef={this.rightCameraRef} />
 					</textbutton>
 					<textlabel
 						BackgroundTransparency={1}
 						TextColor3={new Color3(0, 0, 0)}
-						Text="Zombie"
+						Text="Blue"
 						TextSize={45}
 						Position={new UDim2(0.5, 0, 0.8, 0)}
 						AnchorPoint={new Vector2(0.5, 0.5)}

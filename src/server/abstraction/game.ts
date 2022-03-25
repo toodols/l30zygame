@@ -10,7 +10,7 @@ import { PlayingTeamObject, TeamObject } from "./team";
 
 class Game {
 	instance: Instance;
-	teams: { lobby: TeamObject; human: PlayingTeamObject; zombie: PlayingTeamObject };
+	teams: { lobby: TeamObject; red: PlayingTeamObject; blue: PlayingTeamObject };
 
 	loadPlayerCharacter(player: Player) {
 		const playerObj = PlayerStateManager.getPlayer(player);
@@ -33,8 +33,8 @@ class Game {
 		this.instance = instance;
 		this.teams = {
 			lobby: new TeamObject(instance.FindFirstChild("Lobby")!),
-			human: new PlayingTeamObject(instance.FindFirstChild("Human")!),
-			zombie: new PlayingTeamObject(instance.FindFirstChild("Zombie")!),
+			red: new PlayingTeamObject(instance.FindFirstChild("Red")!),
+			blue: new PlayingTeamObject(instance.FindFirstChild("Blue")!),
 		};
 	}
 }

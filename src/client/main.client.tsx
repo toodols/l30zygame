@@ -3,6 +3,14 @@ import { Players, UserInputService, Workspace } from "@rbxts/services";
 import { PlayerDisplay } from "shared/components/playerdisplay";
 import { SelectTeamGui } from "shared/components/selectteam";
 
+const controls = (
+	require(Players.LocalPlayer.WaitForChild("PlayerScripts")!.WaitForChild(
+		"PlayerModule",
+	)! as unknown as ModuleScript) as { GetControls(): { Enable(): void; Disable(): void } }
+).GetControls();
+
+controls.Disable();
+
 const Player = Players.LocalPlayer;
 let SelectTeamGuiInst: SelectTeamGui;
 
@@ -50,6 +58,7 @@ for (const pod of Lobby.Pods.GetChildren() as PodContainer[]) {
 	let canDrop = true;
 	pod.Pod_Hitbox.Touched.Connect((hit) => {
 		if (canDrop && Player.Character && hit.IsDescendantOf(Player.Character)) {
+			controls.Disable();
 			canDrop = false;
 			const cam = Workspace.CurrentCamera!;
 			cam.CameraType = Enum.CameraType.Scriptable;
@@ -94,6 +103,8 @@ for (const pod of Lobby.Pods.GetChildren() as PodContainer[]) {
 			pod.Floor_Left.PivotTo(originalFloorLeftPivot);
 			pod.Floor_Right.PivotTo(originalFloorRightPivot);
 			pod.Pod.PivotTo(originalPodPivot);
+
+			controls.Enable();
 		}
 	});
 }

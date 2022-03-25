@@ -1,4 +1,4 @@
-type CharacterTypes = "Unknown" | ZombieTypes | HumanTypes;
-type ZombieTypes = "ZombieDefault";
-type HumanTypes = "HumanDefault";
-export { CharacterTypes, ZombieTypes, HumanTypes };
+type CharacterTypes = "Unknown" | RedTypes | BlueTypes;
+type RedTypes = "RedDefault";
+type BlueTypes = "BlueDefault";
+export { CharacterTypes, RedTypes, BlueTypes };
